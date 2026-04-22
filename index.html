@@ -1,61 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Agaba Innocent</title>
+  <title>Agaba Innocent | Portfolio</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background-color: #f4f6f8;
     }
-    header {
+
+    nav {
       background: #2c3e50;
-      color: white;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
     }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background: #34495e;
+      color: white;
+    }
+
     section {
       padding: 30px;
     }
+
     h2 {
       color: #2c3e50;
     }
+
     .card {
       background: white;
       padding: 20px;
-      margin: 10px 0;
+      margin: 15px 0;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
     }
   </style>
 </head>
 
 <body>
 
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
 <header>
   <h1>Agaba Innocent</h1>
-  <p>Credit Analyst | Data Enthusiast</p>
+  <p>Credit Analyst | Data Analytics Enthusiast</p>
 </header>
 
-<section>
+<section id="about">
   <h2>About Me</h2>
   <div class="card">
-    <p>I am a credit professional with experience in loan analysis, portfolio monitoring, and customer risk assessment. I am also growing my skills in data analytics using tools like Excel and Power BI.</p>
+    <p>I am a results-driven credit professional with experience in loan performance analysis, risk assessment, and customer portfolio management. I am passionate about using data to improve decision-making and business outcomes.</p>
   </div>
+</section>
 
+<section id="projects">
   <h2>Projects</h2>
+
   <div class="card">
-    <ul>
-      <li>Loan Performance Dashboard (Power BI)</li>
-      <li>Credit Risk Analysis Report</li>
-      <li>Loan Portfolio Tracking in Excel</li>
-    </ul>
+    <h3>Loan Performance Dashboard</h3>
+    <p>Built using Power BI to track disbursement trends, FPD rates, and portfolio risk.</p>
   </div>
 
+  <div class="card">
+    <h3>Credit Risk Analysis</h3>
+    <p>Analyzed customer repayment behavior to identify high-risk segments.</p>
+  </div>
+
+  <div class="card">
+    <h3>Excel Loan Tracker</h3>
+    <p>Developed a tool to monitor outstanding loans and repayment schedules.</p>
+  </div>
+
+</section>
+
+<section id="contact">
   <h2>Contact</h2>
   <div class="card">
     <p>Email: your@email.com</p>
     <p>Phone: +256...</p>
+    <a class="btn" href="#">Download CV</a>
   </div>
 </section>
 
