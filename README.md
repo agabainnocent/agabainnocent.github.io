@@ -80,8 +80,8 @@ Currently serving as **Risk Control & Credit Review Supervisor at PalmPay**, lea
 
 </div>
 
-🎓 **Bachelor of Science in Statistics** — *Second Class Honours (Upper Division)*
-Kyambogo University, Kampala · CGPA: 3.86 · Graduated 2023
+🎓 **Bachelor of Science in Statistics** 
+Kyambogo University, Kampala ·
 
 📜 **Google Data Analytics Certificate** — *In Progress*
 
