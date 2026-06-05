@@ -1,110 +1,344 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Agaba Innocent | Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f4f6f8;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    nav {
-      background: #2c3e50;
-      padding: 15px;
-      text-align: center;
-    }
+<title>Agaba Innocent | Credit Risk & Data Analyst</title>
 
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    header {
-      text-align: center;
-      padding: 50px 20px;
-      background: #34495e;
-      color: white;
-    }
+<style>
 
-    section {
-      padding: 30px;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
 
-    h2 {
-      color: #2c3e50;
-    }
+body{
+background:#0b1120;
+color:white;
+}
 
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+nav{
+position:fixed;
+width:100%;
+top:0;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+padding:20px;
+z-index:1000;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #2c3e50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-  </style>
+nav ul{
+display:flex;
+justify-content:center;
+list-style:none;
+gap:40px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:600;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:linear-gradient(135deg,#0b1120,#112240,#1e3a8a);
+}
+
+.hero img{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #38bdf8;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:1.3rem;
+color:#94a3b8;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 30px;
+background:#38bdf8;
+color:#000;
+font-weight:600;
+border-radius:30px;
+text-decoration:none;
+}
+
+section{
+padding:90px 10%;
+}
+
+.section-title{
+font-size:2.5rem;
+margin-bottom:30px;
+color:#38bdf8;
+text-align:center;
+}
+
+.about{
+background:#111827;
+border-radius:15px;
+padding:30px;
+}
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.skill-card{
+background:#111827;
+padding:25px;
+border-radius:15px;
+text-align:center;
+}
+
+.timeline-item{
+background:#111827;
+padding:20px;
+margin-bottom:20px;
+border-left:4px solid #38bdf8;
+border-radius:10px;
+}
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.project-card{
+background:#111827;
+padding:25px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.project-card:hover{
+transform:translateY(-8px);
+}
+
+.achievement{
+background:#111827;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.contact{
+text-align:center;
+}
+
+footer{
+padding:25px;
+text-align:center;
+background:#000;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.hero img{
+width:170px;
+height:170px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 </nav>
 
-<header>
-  <h1>Agaba Innocent</h1>
-  <p>Credit Analyst | Risk Control and Credit Review Supervisor</h1>
-</header>
+<section class="hero">
+
+<img src="profile.jpg" alt="Agaba Innocent">
+
+<h1>Agaba Innocent</h1>
+
+<p>
+Credit Risk Analyst | Data Analyst |
+Risk Control & Credit Review Supervisor
+</p>
+
+<a href="#contact" class="btn">Contact Me</a>
+
+</section>
 
 <section id="about">
-  <h2>About Me</h2>
-  <div class="card">
-    <p>I am a results-driven credit professional with experience in loan performance analysis, risk management, and customer portfolio management. I am passionate about using data to improve decision-making and business outcomes.</p>
-  </div>
+
+<h2 class="section-title">About Me</h2>
+
+<div class="about">
+
+<p>
+
+I am a Credit Risk and Data Analytics professional with over four years of experience in credit risk assessment, portfolio monitoring, loan performance analysis and data-driven decision making.
+
+Currently serving as Risk Control & Credit Review Supervisor at PalmPay, leading a team of 30+ credit reviewers while ensuring portfolio quality, policy compliance and operational excellence.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Technical Skills</h2>
+
+<div class="skills">
+
+<div class="skill-card">
+<h3>Power BI</h3>
+<p>Dashboards & Reporting</p>
+</div>
+
+<div class="skill-card">
+<h3>SQL</h3>
+<p>Data Analysis & Querying</p>
+</div>
+
+<div class="skill-card">
+<h3>Excel</h3>
+<p>Advanced Analytics & VBA</p>
+</div>
+
+<div class="skill-card">
+<h3>Credit Risk</h3>
+<p>Portfolio Monitoring</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="experience">
+
+<h2 class="section-title">Career Journey</h2>
+
+<div class="timeline-item">
+<h3>PalmPay</h3>
+<p>Risk Control & Credit Review Supervisor</p>
+<p>Leading 30+ reviewers and portfolio quality monitoring.</p>
+</div>
+
+<div class="timeline-item">
+<h3>Simplepay Capital</h3>
+<p>Credit Analyst</p>
+<p>Portfolio analysis, reporting and risk management.</p>
+</div>
+
+<div class="timeline-item">
+<h3>Simplepay Capital</h3>
+<p>Branch Manager</p>
+<p>Built a portfolio from 0 to 300+ clients.</p>
+</div>
+
+<div class="timeline-item">
+<h3>Mbarara City Council</h3>
+<p>Data Analyst</p>
+<p>Data management and reporting.</p>
+</div>
+
 </section>
 
 <section id="projects">
-  <h2>Projects</h2>
 
-  <div class="card">
-    <h3>Loan Performance Dashboard</h3>
-    <p>Built using Power BI to track disbursement trends, FPD rates, and portfolio risk.</p>
-  </div>
+<h2 class="section-title">Featured Projects</h2>
 
-  <div class="card">
-    <h3>Credit Risk Analysis</h3>
-    <p>Analyzed customer repayment behavior to identify high-risk segments.</p>
-  </div>
+<div class="projects">
 
-  <div class="card">
-    <h3>Power BI Credit Review Dashboard Tracker</h3>
-    <p>Developed a tool to monitor outstanding loans and repayment schedules.</p>
-  </div>
+<div class="project-card">
+<h3>Loan Performance Dashboard</h3>
+<p>Power BI dashboard tracking portfolio quality, FPD and delinquency trends.</p>
+</div>
+
+<div class="project-card">
+<h3>Credit Risk Analysis</h3>
+<p>SQL-based portfolio monitoring and risk segmentation project.</p>
+</div>
+
+<div class="project-card">
+<h3>Collections Tracker</h3>
+<p>Excel automation for collection performance and recovery reporting.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Key Achievements</h2>
+
+<div class="achievement">📈 Built a portfolio of 300+ clients within 3 months</div>
+
+<div class="achievement">📉 Reduced default risk by 15%</div>
+
+<div class="achievement">👥 Managing 30+ credit reviewers</div>
+
+<div class="achievement">📊 Built executive risk reporting dashboards</div>
 
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <div class="card">
-    <p>Email: agabainnocent150@gmail.com</p>
-    <p>Phone: +256701215952</p>
-    <a class="btn" href="Agaba_CV.pdf">Download CV</a>
-  </div>
+
+<h2 class="section-title">Contact</h2>
+
+<div class="contact">
+
+<p>📧 agabainnoxx55@gmail.com</p>
+
+<p>📍 Kampala, Uganda</p>
+
+<p>📱 +256 701 215 952</p>
+
+</div>
+
 </section>
+
+<footer>
+
+<p>© 2026 Agaba Innocent</p>
+
+</footer>
 
 </body>
 </html>
