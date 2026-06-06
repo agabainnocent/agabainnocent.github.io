@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agaba Innocent | Credit Risk & Digital Lending Professional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --bg3: #162032;
+      --accent: #f59e0b;
+      --accent2: #e94560;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(241,245,249,0.08);
+      --card: rgba(30,41,59,0.7);
+      --glass: rgba(15,23,42,0.6);
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg2: #e2e8f0;
+      --bg3: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: rgba(15,23,42,0.1);
+      --card: rgba(255,255,255,0.8);
+      --glass: rgba(248,250,252,0.8);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:var(--glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all 0.3s;}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:2px;}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.3s;}
+    .nav-links a:hover{color:var(--accent);}
+    .theme-toggle{background:none;border:1px solid var(--border);color:var(--muted);padding:0.4rem 0.8rem;cursor:pointer;border-radius:20px;font-size:0.75rem;transition:all 0.3s;}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+    .hamburger span{width:22px;height:2px;background:var(--muted);transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1.5rem 5%;z-index:999;}
+    .mobile-menu.open{display:block;}
+    .mobile-menu a{display:block;color:var(--muted);text-decoration:none;padding:0.8rem 0;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--border);}
+    .mobile-menu a:last-child{border-bottom:none;}
+
+    /* HERO */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 5% 4rem;gap:4rem;position:relative;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(245,158,11,0.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 10% 90%,rgba(233,69,96,0.05) 0%,transparent 60%);pointer-events:none;}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 20%,transparent 80%);pointer-events:none;}
+
+    .hero-left{position:relative;z-index:1;}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(245,158,11,0.3);padding:0.4rem 1rem;border-radius:20px;margin-bottom:1.5rem;animation:fadeUp 0.6s ease both;}
+    .hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+    .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,6vw,5.5rem);font-weight:700;line-height:1.0;color:var(--text);animation:fadeUp 0.7s ease 0.1s both;}
+    .hero h1 .accent{color:var(--accent);}
+    .hero-title{font-size:clamp(0.85rem,1.5vw,1rem);color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-top:0.8rem;margin-bottom:1.2rem;animation:fadeUp 0.7s ease 0.2s both;}
+    .hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:500px;animation:fadeUp 0.7s ease 0.25s both;}
+
+    .hero-contacts{display:flex;flex-direction:column;gap:0.5rem;margin:1.5rem 0;animation:fadeUp 0.7s ease 0.3s both;}
+    .hero-contact-item{display:flex;align-items:center;gap:0.6rem;font-size:0.85rem;color:var(--muted);}
+    .hero-contact-item span{color:var(--accent);}
+
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.7s ease 0.35s both;}
+    .btn-gold{background:var(--accent);color:#0f172a;padding:0.85rem 2rem;border:none;font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all 0.3s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+    .btn-gold:hover{background:#d97706;transform:translateY(-2px);}
+    .btn-ghost{background:transparent;color:var(--muted);padding:0.85rem 2rem;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all 0.3s;}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+    .hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;flex-wrap:wrap;animation:fadeUp 0.7s ease 0.4s both;}
+    .stat{text-align:left;}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--accent);line-height:1;}
+    .stat-lbl{font-size:0.7rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:0.2rem;}
+
+    /* PROFILE PHOTO */
+    .hero-right{position:relative;z-index:1;display:flex;justify-content:center;animation:fadeUp 0.7s ease 0.2s both;}
+    .photo-frame{position:relative;width:340px;height:400px;}
+    .photo-border{position:absolute;inset:-12px;border:1px solid rgba(245,158,11,0.3);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px));}
+    .photo-border2{position:absolute;inset:-6px;border:1px solid rgba(245,158,11,0.15);clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,15px 100%,0 calc(100% - 15px));}
+    .photo-inner{width:100%;height:100%;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px));overflow:hidden;background:var(--bg2);display:flex;align-items:center;justify-content:center;position:relative;}
+    .photo-inner img{width:100%;height:100%;object-fit:cover;object-position:top;}
+    .photo-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:var(--muted);text-align:center;padding:2rem;}
+    .photo-placeholder-icon{font-size:5rem;opacity:0.3;}
+    .photo-placeholder p{font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;opacity:0.5;}
+    .photo-tag{position:absolute;bottom:-20px;right:-10px;background:var(--accent);color:#0f172a;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:0.5rem 1rem;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));}
+    .photo-corner{position:absolute;top:-6px;left:-6px;width:30px;height:30px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);}
+    .photo-corner2{position:absolute;bottom:-6px;right:-6px;width:30px;height:30px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent);}
+
+    /* SECTIONS */
+    section{padding:6rem 5%;position:relative;z-index:1;}
+    .alt-bg{background:var(--bg2);}
+    .section-header{margin-bottom:3.5rem;}
+    .section-label{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:var(--text);}
+    .section-title span{color:var(--accent);}
+    .section-line{width:50px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin-top:1rem;}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+    .about-text{font-size:0.95rem;color:var(--muted);line-height:1.9;}
+    .about-text p+p{margin-top:1.2rem;}
+    .about-text strong{color:var(--text);}
+    .about-highlight{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.2rem 1.5rem;margin:1.5rem 0;backdrop-filter:blur(10px);}
+    .about-highlight p{font-size:0.9rem;color:var(--muted);font-style:italic;}
+
+    .skills-container{display:flex;flex-direction:column;gap:1rem;}
+    .skill-item{}
+    .skill-head{display:flex;justify-content:space-between;margin-bottom:0.4rem;font-size:0.83rem;color:var(--text);}
+    .skill-pct{color:var(--accent);font-weight:500;}
+    .skill-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),#fcd34d);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform 1.4s cubic-bezier(0.16,1,0.3,1);}
+    .skill-fill.go{transform:scaleX(1);}
+
+    /* EXPERIENCE */
+    .timeline{position:relative;padding-left:2rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(245,158,11,0.1));}
+
+    .tl-item{position:relative;padding:0 0 3.5rem 2.5rem;opacity:0;transform:translateX(-24px);transition:all 0.6s ease;}
+    .tl-item.show{opacity:1;transform:translateX(0);}
+    .tl-dot{position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 12px rgba(245,158,11,0.6);}
+    .tl-dot.current{background:var(--accent2);box-shadow:0 0 12px rgba(233,69,96,0.6);}
+
+    .tl-date{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;}
+    .tl-role{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:0.15rem;}
+    .tl-company{font-size:0.85rem;color:var(--accent2);margin-bottom:1rem;letter-spacing:0.5px;}
+
+    .tl-body{background:var(--card);border:1px solid var(--border);padding:1.5rem;backdrop-filter:blur(10px);}
+    .tl-body ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .tl-body ul li{font-size:0.88rem;color:var(--muted);line-height:1.6;padding-left:1.2rem;position:relative;}
+    .tl-body ul li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:2px;}
+    .tl-achievement{margin-top:1rem;padding:0.8rem 1rem;background:rgba(245,158,11,0.07);border-left:2px solid var(--accent);font-size:0.83rem;color:var(--muted);}
+    .tl-achievement strong{color:var(--accent);}
+
+    .tl-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
+    .tl-tag{font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;padding:0.22rem 0.7rem;border:1px solid var(--border);color:var(--muted);border-radius:2px;}
+
+    /* SKILLS CARDS */
+    .skills-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .skill-col-card{background:var(--card);border:1px solid var(--border);padding:2rem;backdrop-filter:blur(10px);transition:all 0.3s;position:relative;overflow:hidden;}
+    .skill-col-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
+    .skill-col-card:hover::before{transform:scaleX(1);}
+    .skill-col-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,0.2);}
+    .skill-col-icon{font-size:2rem;margin-bottom:1rem;}
+    .skill-col-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);margin-bottom:1rem;}
+    .skill-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+    .skill-list li{font-size:0.83rem;color:var(--muted);padding-left:1rem;position:relative;}
+    .skill-list li::before{content:'◆';position:absolute;left:0;color:var(--accent);font-size:0.45rem;top:5px;}
+
+    /* ACHIEVEMENTS */
+    .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .ach-card{background:var(--card);border:1px solid var(--border);padding:2rem;backdrop-filter:blur(10px);transition:all 0.3s;position:relative;overflow:hidden;}
+    .ach-card::after{content:'';position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;background:radial-gradient(circle,rgba(245,158,11,0.08),transparent);border-radius:50%;}
+    .ach-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,0.25);}
+    .ach-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:0.5rem;}
+    .ach-card h3{font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:0.4rem;}
+    .ach-card p{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+
+    /* EDUCATION */
+    .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .edu-card{background:var(--card);border:1px solid var(--border);padding:2rem;backdrop-filter:blur(10px);transition:all 0.3s;}
+    .edu-card:hover{border-color:rgba(245,158,11,0.25);transform:translateY(-3px);}
+    .edu-icon{font-size:2rem;margin-bottom:1rem;}
+    .edu-card h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text);margin-bottom:0.3rem;}
+    .edu-inst{font-size:0.8rem;color:var(--accent);letter-spacing:0.5px;margin-bottom:0.8rem;}
+    .edu-card p{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+    .edu-badge{display:inline-block;margin-top:0.8rem;font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;padding:0.25rem 0.7rem;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--accent);border-radius:2px;}
+
+    /* CONTACT */
+    .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+    .contact-text p{font-size:0.95rem;color:var(--muted);line-height:1.9;margin-bottom:2rem;}
+    .contact-items{display:flex;flex-direction:column;gap:1rem;}
+    .contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);transition:all 0.3s;backdrop-filter:blur(10px);}
+    .contact-item:hover{border-color:rgba(245,158,11,0.3);}
+    .contact-icon{font-size:1.2rem;color:var(--accent);}
+    .contact-item-text{font-size:0.85rem;color:var(--text);}
+    .contact-item-label{font-size:0.7rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+
+    .contact-form{display:flex;flex-direction:column;gap:1rem;}
+    .form-group{display:flex;flex-direction:column;gap:0.4rem;}
+    .form-group label{font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+    .form-group input,.form-group textarea{background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.9rem 1rem;font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;backdrop-filter:blur(10px);}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
+    .form-group textarea{resize:vertical;min-height:120px;}
+
+    /* FOOTER */
+    footer{text-align:center;padding:2rem 5%;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);letter-spacing:1px;}
+    footer span{color:var(--accent);}
+
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .fade-up.show{opacity:1;transform:translateY(0);}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding:7rem 5% 3rem;gap:3rem;}
+      .hero-right{order:-1;}
+      .photo-frame{width:220px;height:260px;}
+      .about-grid{grid-template-columns:1fr;gap:2.5rem;}
+      .skills-cols{grid-template-columns:1fr;}
+      .ach-grid{grid-template-columns:1fr 1fr;}
+      .edu-grid{grid-template-columns:1fr;}
+      .contact-wrapper{grid-template-columns:1fr;}
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+    }
+    @media(max-width:600px){
+      .ach-grid{grid-template-columns:1fr;}
+      section{padding:4rem 5%;}
+      .hero-stats{gap:1.5rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A·I</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()">☀ Light</button></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#experience" onclick="toggleMenu()">Experience</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#achievements" onclick="toggleMenu()">Achievements</a>
+  <a href="#education" onclick="toggleMenu()">Education</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">📍 Available for Opportunities · Kampala, Uganda</div>
+    <h1>Agaba<br/><span class="accent">Innocent</span></h1>
+    <div class="hero-title">Credit Risk Analyst &nbsp;·&nbsp; Digital Lending Professional &nbsp;·&nbsp; Data Analytics</div>
+    <p class="hero-desc">Driving data-driven lending decisions through credit risk assessment, portfolio monitoring, team leadership, and business intelligence across Uganda's fintech and lending sector.</p>
+
+    <div class="hero-contacts">
+      <div class="hero-contact-item"><span>✉</span> agabainnoxx55@gmail.com</div>
+      <div class="hero-contact-item"><span>📱</span> +256 701 215 952</div>
+      <div class="hero-contact-item"><span>🔗</span> github.com/agabainnocent</div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Hire Me</a>
+      <a href="#experience" class="btn-ghost">View Experience</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">4+</div><div class="stat-lbl">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">300+</div><div class="stat-lbl">Clients Managed</div></div>
+      <div class="stat"><div class="stat-num">95%+</div><div class="stat-lbl">Collections Rate</div></div>
+      <div class="stat"><div class="stat-num">30+</div><div class="stat-lbl">Team Led</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-frame">
+      <div class="photo-border"></div>
+      <div class="photo-border2"></div>
+      <div class="photo-corner"></div>
+      <div class="photo-corner2"></div>
+      <div class="photo-inner">
+        <!-- Replace 'your-photo.jpg' with your actual photo filename after uploading -->
+        <img src="your-photo.jpg" alt="Agaba Innocent" onerror="this.style.display='none';document.querySelector('.photo-placeholder').style.display='flex';" style="display:block;"/>
+        <div class="photo-placeholder" style="display:none;">
+          <div class="photo-placeholder-icon">👤</div>
+          <p>Upload your photo<br/>rename it to<br/><strong style="color:var(--accent)">your-photo.jpg</strong></p>
+        </div>
+      </div>
+      <div class="photo-tag">Risk &amp; Data Analyst</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="alt-bg">
+  <div class="section-header fade-up">
+    <div class="section-label">Who I Am</div>
+    <div class="section-title">About <span>Me</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>I am a <strong>Credit Risk & Digital Lending Professional</strong> with over four years of progressive experience in credit risk management, portfolio monitoring, lending operations, collections management, and data analytics.</p>
+      <p>My career journey spans <strong>Credit Officer → Branch Manager → Credit Analyst → Risk Control & Credit Review Supervisor</strong> — a progression that has equipped me with deep practical expertise across the full credit lifecycle, from borrower acquisition to portfolio quality management.</p>
+      <p>I combine <strong>analytical thinking</strong> with strong technical skills in Excel, SQL, and Power BI to transform raw financial data into actionable business insights that support sound lending decisions and sustainable portfolio growth.</p>
+      <div class="about-highlight">
+        <p>"I bridge the gap between raw financial data and strategic decisions — turning complex loan performance metrics into clear intelligence for lending institutions and fintech organizations."</p>
+      </div>
+      <p>Currently serving as <strong>Risk Control & Credit Review Supervisor at PalmPay</strong>, I lead 30+ credit reviewers, driving portfolio quality and implementing risk frameworks across a dynamic fintech environment.</p>
+    </div>
+    <div class="skills-container fade-up">
+      <div class="skill-item">
+        <div class="skill-head"><span>Credit Risk Analysis</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.95"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>Portfolio Risk Monitoring</span><span class="skill-pct">93%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.93"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>Microsoft Excel (Advanced)</span><span class="skill-pct">90%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.90"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>Power BI Dashboards</span><span class="skill-pct">85%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>SQL / SSMS</span><span class="skill-pct">82%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.82"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>Collections Management</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.95"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>Team Leadership</span><span class="skill-pct">88%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.88"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-head"><span>Financial Data Reporting</span><span class="skill-pct">90%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-w="0.90"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-up">
+    <div class="section-label">Career Path</div>
+    <div class="section-title">Professional <span>Experience</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot current"></div>
+      <div class="tl-date">January 2026 – Present</div>
+      <div class="tl-role">Risk Control & Credit Review Supervisor</div>
+      <div class="tl-company">PalmPay · Kampala, Uganda</div>
+      <div class="tl-body">
+        <ul>
+          <li>Evaluate and approve credit applications for both cash and non-cash facilities ensuring compliance with internal credit policies and risk standards</li>
+          <li>Analyze borrowers' credit worthiness, financial capacity and repayment ability to support sound lending decisions</li>
+          <li>Monitor loan portfolio performance by reviewing daily arrears reports and identifying non-performing accounts for corrective action</li>
+          <li>Implement risk mitigation strategies to reduce default rates and improve overall portfolio quality</li>
+          <li>Supervise and guide a team of 30+ credit reviewers ensuring adherence to credit procedures and service level agreements</li>
+          <li>Collaborate with operations and collections teams to maintain healthy loan portfolio performance</li>
+          <li>Prepare and submit portfolio performance and risk analysis reports to management for decision making</li>
+          <li>Contribute to credit policy and process improvements to enhance turnaround time and strengthen risk control mechanisms</li>
+        </ul>
+        <div class="tl-achievement"><strong>⚡ Key Impact:</strong> Managing portfolio risk controls while supervising a large review team and ensuring full SLA compliance across a fast-growing fintech portfolio.</div>
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">Credit Review</span>
+        <span class="tl-tag">Team Leadership</span>
+        <span class="tl-tag">Risk Mitigation</span>
+        <span class="tl-tag">Portfolio Monitoring</span>
+        <span class="tl-tag">Fintech</span>
+        <span class="tl-tag">SLA Management</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">January 2025 – December 2025</div>
+      <div class="tl-role">Credit Analyst</div>
+      <div class="tl-company">Simplepay Capital Ug Ltd · Kampala, Uganda</div>
+      <div class="tl-body">
+        <ul>
+          <li>Utilized Excel, SQL and Power BI to analyze borrower financial capacity, calculate risk ratios, monitor portfolio performance and generate credit risk reports</li>
+          <li>Assessed loan applicants' creditworthiness by analyzing income sources, cash flow statements, financial capacity and repayment ability</li>
+          <li>Monitored loan portfolio of 300+ clients, identifying delinquency trends and reducing default risk by 15%</li>
+          <li>Reviewed and evaluated loan applications to ensure full compliance with internal credit policies and regulatory requirements</li>
+          <li>Prepared detailed credit appraisal reports and presented recommendations to the credit management team for approval</li>
+          <li>Maintained portfolio quality by managing arrears and supporting recovery efforts to minimize default exposure</li>
+          <li>Prepared weekly and monthly reports on portfolio performance, delinquency rates and risk exposure for management review</li>
+        </ul>
+        <div class="tl-achievement"><strong>⚡ Key Impact:</strong> Reduced default risk by 15% through systematic delinquency trend monitoring and data-driven early intervention strategies.</div>
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">SQL</span>
+        <span class="tl-tag">Power BI</span>
+        <span class="tl-tag">Excel</span>
+        <span class="tl-tag">Credit Appraisal</span>
+        <span class="tl-tag">Delinquency Analysis</span>
+        <span class="tl-tag">Risk Reporting</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">December 2023 – January 2025</div>
+      <div class="tl-role">Branch Manager</div>
+      <div class="tl-company">Simplepay Capital Ug Ltd · Ibanda, Uganda</div>
+      <div class="tl-body">
+        <ul>
+          <li>Successfully established and operationalized a new branch, growing the loan portfolio from zero to over 300 active clients within 3 months</li>
+          <li>Led end-to-end credit operations including client acquisition, credit appraisal, underwriting, disbursement and loan monitoring</li>
+          <li>Maintained portfolio collections rate above 95%, improving portfolio quality and minimizing credit risk exposure</li>
+          <li>Supervised and managed credit and collections team, improving team productivity and overall performance</li>
+          <li>Conducted financial analysis and borrower risk assessments to support sound lending decisions</li>
+          <li>Strengthened client relationships, supporting portfolio growth and improving customer retention</li>
+          <li>Ensured full compliance with company credit policies, procedures and regulatory requirements</li>
+        </ul>
+        <div class="tl-achievement"><strong>⚡ Key Impact:</strong> Built a brand new branch portfolio from zero to 300+ active clients in just 3 months while maintaining 95%+ collections performance.</div>
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">Branch Operations</span>
+        <span class="tl-tag">Portfolio Growth</span>
+        <span class="tl-tag">Underwriting</span>
+        <span class="tl-tag">Collections</span>
+        <span class="tl-tag">Team Management</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">March 2023 – December 2023</div>
+      <div class="tl-role">Credit Officer</div>
+      <div class="tl-company">Simplepay Capital Ug Ltd · Kabale, Uganda</div>
+      <div class="tl-body">
+        <ul>
+          <li>Improved collections performance from 70% to over 95%, significantly reducing default rates</li>
+          <li>Managed loan portfolio and acquired an average of 50 new clients per month while maintaining high portfolio quality</li>
+          <li>Monitored loan repayments and proactively followed up on delinquent accounts, improving loan recovery rates</li>
+          <li>Conducted borrower assessments and credit appraisals in line with company lending policies</li>
+        </ul>
+        <div class="tl-achievement"><strong>⚡ Promoted:</strong> Elevated to Branch Manager position due to outstanding performance, strong portfolio growth and excellent collections results.</div>
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">Loan Management</span>
+        <span class="tl-tag">Collections Recovery</span>
+        <span class="tl-tag">Client Acquisition</span>
+        <span class="tl-tag">Credit Appraisal</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">August 2022 – February 2023</div>
+      <div class="tl-role">Data Analyst</div>
+      <div class="tl-company">Mbarara City Council · Mbarara, Uganda</div>
+      <div class="tl-body">
+        <ul>
+          <li>Analyzed and interpreted city council datasets from different projects handled by the council and other stakeholders</li>
+          <li>Managed the full data lifecycle including data collection, management, storage, analysis, reporting and innovations</li>
+          <li>Participated in implementing policies for effective data management in compliance with Mbarara City Council Data Privacy Policy</li>
+          <li>Responsible for sorting, coding, cleaning, validating and aggregation of raw data files for analysis and presentation</li>
+          <li>Supported completion and compilation of project monitoring and evaluation reports for decision making</li>
+          <li>Produced analytical reports for management and stakeholders, strengthening data-driven decision making</li>
+        </ul>
+      </div>
+      <div class="tl-tags">
+        <span class="tl-tag">Data Analysis</span>
+        <span class="tl-tag">M&E Reporting</span>
+        <span class="tl-tag">Data Lifecycle</span>
+        <span class="tl-tag">Public Sector</span>
+        <span class="tl-tag">Stakeholder Reporting</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="alt-bg">
+  <div class="section-header fade-up">
+    <div class="section-label">What I Bring</div>
+    <div class="section-title">Core <span>Skills</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-cols">
+    <div class="skill-col-card fade-up">
+      <div class="skill-col-icon">🏦</div>
+      <h3>Credit & Risk</h3>
+      <ul class="skill-list">
+        <li>Credit Analysis & Appraisal</li>
+        <li>Credit Risk Management</li>
+        <li>Loan Underwriting</li>
+        <li>Portfolio Risk Monitoring</li>
+        <li>Collections Management</li>
+        <li>SME & Retail Lending</li>
+        <li>Non-Performing Loan Management</li>
+        <li>Credit Policy Development</li>
+      </ul>
+    </div>
+    <div class="skill-col-card fade-up">
+      <div class="skill-col-icon">📊</div>
+      <h3>Data & Analytics</h3>
+      <ul class="skill-list">
+        <li>SQL / SQL Server (SSMS)</li>
+        <li>Power BI Dashboards</li>
+        <li>Microsoft Excel (Advanced)</li>
+        <li>Excel VBA / Macros</li>
+        <li>Data Visualization</li>
+        <li>Data Cleaning & Transformation</li>
+        <li>KPI Reporting & Dashboards</li>
+        <li>Statistical Analysis</li>
+      </ul>
+    </div>
+    <div class="skill-col-card fade-up">
+      <div class="skill-col-icon">🎯</div>
+      <h3>Leadership & Strategy</h3>
+      <ul class="skill-list">
+        <li>Team Supervision & Coaching</li>
+        <li>Performance Management</li>
+        <li>Stakeholder Communication</li>
+        <li>Process Improvement</li>
+        <li>Risk Mitigation Strategy</li>
+        <li>SLA Compliance Management</li>
+        <li>Branch Operations Management</li>
+        <li>Decision Support Reporting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header fade-up">
+    <div class="section-label">Impact & Results</div>
+    <div class="section-title">Key <span>Achievements</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="ach-grid">
+    <div class="ach-card fade-up">
+      <div class="ach-num">300+</div>
+      <h3>Portfolio Built from Zero</h3>
+      <p>Grew a brand new branch loan portfolio from 0 to 300+ active clients in just 3 months as Branch Manager at Simplepay Capital.</p>
+    </div>
+    <div class="ach-card fade-up">
+      <div class="ach-num">15%</div>
+      <h3>Default Rate Reduction</h3>
+      <p>Reduced portfolio default risk by 15% through proactive delinquency trend analysis and targeted early intervention strategies.</p>
+    </div>
+    <div class="ach-card fade-up">
+      <div class="ach-num">95%+</div>
+      <h3>Collections Rate Achieved</h3>
+      <p>Improved collections performance from 70% to over 95%, significantly strengthening portfolio quality and reducing credit risk exposure.</p>
+    </div>
+    <div class="ach-card fade-up">
+      <div class="ach-num">30+</div>
+      <h3>Team Members Supervised</h3>
+      <p>Currently leading and mentoring a team of 30+ credit reviewers at PalmPay, ensuring full adherence to credit procedures and SLAs.</p>
+    </div>
+    <div class="ach-card fade-up">
+      <div class="ach-num">50+</div>
+      <h3>New Clients Per Month</h3>
+      <p>Consistently acquired 50+ new loan clients monthly as Credit Officer while maintaining high portfolio quality and collections standards.</p>
+    </div>
+    <div class="ach-card fade-up">
+      <div class="ach-num">3.86</div>
+      <h3>University CGPA</h3>
+      <p>Graduated with Second Class Honours (Upper Division) in BSc Statistics from Kyambogo University — strong foundation in quantitative analysis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="alt-bg">
+  <div class="section-header fade-up">
+    <div class="section-label">Academic Background</div>
+    <div class="section-title">Education & <span>Certifications</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card fade-up">
+      <div class="edu-icon">🎓</div>
+      <h3>Bachelor of Science in Statistics</h3>
+      <div class="edu-inst">Kyambogo University, Kampala · 2019–2023</div>
+      <p>Second Class Honours (Upper Division). CGPA: 3.86. Coursework included probability, econometric models, statistical inference, biostatistics, regression analysis, database management, and applied data analysis.</p>
+      <span class="edu-badge">2nd Class Upper · CGPA 3.86</span>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-icon">📜</div>
+      <h3>Google Data Analytics Certificate</h3>
+      <div class="edu-inst">Google / Coursera · In Progress</div>
+      <p>Professional certification covering the complete data analysis process — data collection, cleaning, analysis, visualization using SQL, spreadsheets, Tableau, and R programming.</p>
+      <span class="edu-badge">In Progress</span>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-icon">🏅</div>
+      <h3>Uganda Statistical Society</h3>
+      <div class="edu-inst">USS · Certified Member · No. USS/1572/22</div>
+      <p>Registered certified member of the Uganda Statistical Society, demonstrating professional commitment to statistical practice, data analysis, and evidence-based decision making in Uganda.</p>
+      <span class="edu-badge">USS Certified</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <div class="section-label">Get In Touch</div>
+    <div class="section-title">Let's <span>Connect</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-text fade-up">
+      <p>I'm open to new opportunities in <strong>Credit Risk Management, Digital Lending, Portfolio Analytics,</strong> and <strong>Data Analysis</strong>. Whether you're a recruiter, a fintech organization, a bank, or a potential collaborator — I'd love to hear from you.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-text">agabainnoxx55@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-item-label">Phone / WhatsApp</div>
+            <div class="contact-item-text">+256 701 215 952</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-text">Kampala, Uganda</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🔗</div>
+          <div>
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-text">github.com/agabainnocent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Jane Recruiter"/>
+      </div>
+      <div class="form-group">
+        <label>Your Email</label>
+        <input type="email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" placeholder="Job Opportunity / Collaboration"/>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell me about the opportunity..."></textarea>
+      </div>
+      <a href="mailto:agabainnoxx55@gmail.com" class="btn-gold" style="text-align:center;">Send Message ✉</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Agaba Innocent</span> · Credit Risk & Digital Lending Professional · Kampala, Uganda</p>
+  <p style="margin-top:0.5rem;">Built with purpose · Open to opportunities</p>
+</footer>
+
+<script>
+  // Theme toggle
+  function toggleTheme(){
+    const html = document.documentElement;
+    const btn = document.querySelector('.theme-toggle');
+    if(html.dataset.theme === 'dark'){
+      html.dataset.theme = 'light';
+      btn.textContent = '🌙 Dark';
+    } else {
+      html.dataset.theme = 'dark';
+      btn.textContent = '☀ Light';
+    }
+  }
+
+  // Mobile menu
+  function toggleMenu(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Intersection observer
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+        // animate skill bars inside
+        e.target.querySelectorAll('.skill-fill').forEach(b => {
+          setTimeout(() => b.classList.add('go'), 200);
+        });
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('.fade-up, .tl-item').forEach(el => io.observe(el));
+
+  // Skill bars in about section
+  const skillIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.skill-fill').forEach((b,i) => {
+          setTimeout(() => b.classList.add('go'), i * 100);
+        });
+      }
+    });
+  }, {threshold: 0.2});
+  document.querySelectorAll('.skills-container').forEach(el => skillIo.observe(el));
+
+  // Active nav
+  const secs = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if(window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    navAs.forEach(a => { a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--accent)' : ''; });
+  });
+
+  // Animated counters in hero
+  function animateCounter(el, target, suffix=''){
+    let current = 0;
+    const step = target / 60;
+    const timer = setInterval(() => {
+      current += step;
+      if(current >= target){ current = target; clearInterval(timer); }
+      el.textContent = (Number.isInteger(target) ? Math.floor(current) : current.toFixed(2)) + suffix;
+    }, 25);
+  }
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      animateCounter(document.querySelectorAll('.stat-num')[0], 4, '+');
+      animateCounter(document.querySelectorAll('.stat-num')[1], 300, '+');
+      animateCounter(document.querySelectorAll('.stat-num')[2], 95, '%+');
+      animateCounter(document.querySelectorAll('.stat-num')[3], 30, '+');
+    }, 600);
+  });
+</script>
+</body>
+</html>
